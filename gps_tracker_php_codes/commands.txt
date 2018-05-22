@@ -1,0 +1,37 @@
+CREATE DATABASE gps_tracking_system DEFAULT CHARACTER SET utf8;
+GRANT ALL ON gps_tracking_system.* TO 'admin'@'localhost' IDENTIFIED BY 'admin123';
+GRANT ALL ON gps_tracking_system.* TO 'admin'@'127.0.0.1' IDENTIFIED BY 'admin123';
+CREATE TABLE users (
+  u_id VARCHAR(255) NOT NULL,
+  u_name VARCHAR(255),
+  u_pw VARCHAR(255),
+  PRIMARY KEY(u_id)
+) ENGINE = InnoDB;
+CREATE TABLE admin (
+  a_id VARCHAR(255) NOT NULL,
+  a_name VARCHAR(255),
+  a_pw VARCHAR(255),
+  PRIMARY KEY(a_id)
+) ENGINE = InnoDB;
+INSERT into admin values ("a1","Dattatreya","951b2ccfbf346abace187e4e42639787");
+a1 password: kanha1997
+INSERT into admin values ("a2","Skaipal","cc02faafee21e46b3b824837a625d18d");
+a2 password: skp
+INSERT into users values ("u1","Dattatreya","ad54f5f90cf9f876139cf4aa0892ef2b1");
+u1 passowrd: dt
+INSERT into users values ("u2","Daisy","980402032af44e4f9ff1d5063024baf7");
+u2 password: ddas
+INSERT into users values ("u3","Sandeep","70f84b6a3d3262d63d96a24fd83c0a2d");
+u3 password: sdp
+CREATE TABLE u1_account (
+  u_tstamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  u_loc VARCHAR(255),
+  PRIMARY KEY(u_tstamp)
+) ENGINE = InnoDB;
+CREATE TABLE u2_account (
+  u_tstamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  u_loc VARCHAR(255),
+  PRIMARY KEY(u_tstamp)
+) ENGINE = InnoDB;
+INSERT into u1_account values(CURRENT_TIMESTAMP, "https://www.google.com/maps?q=20 19.374228,085 49.381488");
+https://www.google.com/maps?q=20 20.137752,085 47.983272
