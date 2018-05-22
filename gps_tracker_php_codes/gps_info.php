@@ -107,7 +107,7 @@ if(isset($_SESSION['id']))://if id is of user or admin
 		<?php
 		if($_SESSION['type']===0)//if its admin
 		{
-			echo ('<td><center><a href="edit_gps_info.php?u_id='.$_SESSION['user'].'&u_tstamp='.$output['u_tstamp'].'">&nbsp;Edit&nbsp;</a> / <a href="delete_gps_info.php?u_id='.$_SESSION['user'].',u_tstamp='.$output['u_tstamp'].'">&nbsp;Delete&nbsp;</a></td>');
+			echo ('<td><center><a href="edit_gps_info.php?u_id='.$_SESSION['user'].'&u_tstamp='.$output['u_tstamp'].'">&nbsp;Edit&nbsp;</a> / <a href="delete_gps_info.php?u_id='.$_SESSION['user'].'&u_tstamp='.$output['u_tstamp'].'">&nbsp;Delete&nbsp;</a></td>');
 			//echo ('<td><center><a href="edit_gps_info.php?u_id='.$output['u_id'].',u_tstamp='.$output['u_tstamp'].'">&nbsp;Edit&nbsp;</a> / <a href="delete_gps_info.php?u_id='.$output['u_id'].',u_tstamp='.$output['u_tstamp'].'">&nbsp;Delete&nbsp;</a></td>');
 		}
 		?>

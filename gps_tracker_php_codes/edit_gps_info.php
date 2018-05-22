@@ -1,7 +1,7 @@
 <?php
 require_once "pdo_skp.php";
 session_start();
-if (!isset($_SESSION['id'])) {//as both user and admin can edit user profile there is no $_SESSION['type'] check
+if (!isset($_SESSION['id']) || $_SESSION['type']!==0) {//as only admin can edit gps info
     die('ACCESS DENIED');
 }	
 if (isset($_POST['cancel'])) {
