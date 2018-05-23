@@ -32,20 +32,30 @@ if ( isset($_POST['u_id']) && isset($_POST['u_name']) && isset($_POST['u_pw']) )
 		else{
 			$hashed_pw = hash('md5', $salt.$_POST['u_pw']);	//store u_pw in hashed format 
 			$_SESSION['check']=$hashed_pw;
-			$stmt = $pdo->prepare('INSERT INTO users (u_id, u_name, u_pw) VALUES ( :u_id, :u_name, :u_pw)');
-			$stmt->execute(array(
-				':u_id' => $_POST['u_id'],
-				':u_name' => $_POST['u_name'],
-				':u_pw' => $hashed_pw));
-			$table  = $_POST['u_id']."_account";
-			$sql= "CREATE TABLE $table (
-  						u_tstamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  						u_loc VARCHAR(255),
-  						PRIMARY KEY(u_tstamp)
-						) ENGINE = InnoDB;";
-			$creat=$pdo->exec($sql);
-			$_SESSION['success'] = 'New user added';
-			header('Location: user_info.php');
+			$email = $_POST['u_email'];
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+			{
+  				$_SESSION['failure'] = "Invalid email format";
+  				header('Location: add_user.php'); 
+			}
+			else
+			{
+				$stmt = $pdo->prepare('INSERT INTO users (u_id, u_name, u_pw, u_email) VALUES ( :u_id, :u_name, :u_pw, :u_email)');
+				$stmt->execute(array(
+					':u_id' => $_POST['u_id'],
+					':u_name' => $_POST['u_name'],
+					':u_pw' => $hashed_pw,
+					':u_email' => $_POST['u_email']));
+				$table  = $_POST['u_id']."_account";
+				$sql= "CREATE TABLE $table (
+  							u_tstamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  							u_loc VARCHAR(255),
+  							PRIMARY KEY(u_tstamp)
+							) ENGINE = InnoDB;";
+				$creat=$pdo->exec($sql);
+				$_SESSION['success'] = 'New user added';
+				header('Location: user_info.php');
+			}
 			return;
 		}
 	}
@@ -84,6 +94,8 @@ if ( isset($_SESSION['failure']) ) {
 <input type="text" name="u_name" size="40"/></p>
 <p>Password:
 <input type="password" name="u_pw" size="15"/></p>
+<p>Email:
+<input type="email" name="u_email" size="50"/></p>
 <input type="submit" name='add' value="Add">
 <input type="submit" name="cancel" value="Cancel">
 </form>

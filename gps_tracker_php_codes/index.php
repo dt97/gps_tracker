@@ -65,7 +65,6 @@ if ( isset($_POST['id']) && isset($_POST['pw']) ) {
         }
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html>

@@ -34,5 +34,27 @@ CREATE TABLE u2_account (
   PRIMARY KEY(u_tstamp)
 ) ENGINE = InnoDB;
 INSERT into u1_account values(CURRENT_TIMESTAMP, "https://www.google.com/maps?q=20 19.374228,085 49.381488");
-https://www.google.com/maps?q=20 20.137752,085 47.983272
+INSERT into u1_account values(CURRENT_TIMESTAMP, "https://www.google.com/maps?q=20 20.137752,085 47.983272");
+//https://www.google.com/maps?q=20 20.137752,085 47.983272
 ALTER TABLE users ADD u_email VARCHAR(255) NOT NULL;
+Users
+u_id: u1
+u_name: Dattatreya Tripathy
+u_pw: dt
+u_email: dt.kanha@gmail.com
+
+u_id: u2
+u_name: Daisy Das
+u_pw: ddas
+u_email: dddaisyd06@gmail.com
+
+u_id: u3
+u_name: Sandeep
+u_pw: sdp
+u_email: sandeep1361998@gmail.com
+
+ALTER TABLE admin ADD a_email VARCHAR(255) NOT NULL;
+UPDATE `admin` SET `a_email` = 'dt.kanha@gmail.com' WHERE `admin`.`a_id` = 'a1';
+UPDATE `admin` SET `a_email` = 'saroj.k4@gmail.com' WHERE `admin`.`a_id` = 'a2';
+INSERT into admin values ("a3","Daisy","57c22a18b5ddada2eb38fa54a2fd8e99", "dddaisyd06@gmail.com");
+a3 password: daisyd

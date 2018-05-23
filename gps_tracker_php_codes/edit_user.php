@@ -100,7 +100,7 @@ if ( isset($_SESSION['failure']) ) {
 <input type="hidden" name="uid" size="40" value="<?= $uid ?>"/>
 <p>Name<input type="text" name="name" size="40" value="<?= $name ?>"/></p>
 <p>Password<input type="password" name="pw" size="15" value=""/></p>
-<p>Email<input type="email" name="uemail" size="15" value=""/></p>
+<p>Email<input type="email" name="uemail" size="50" value=""/></p>
 <input type="submit" value="Save">
 <input type="submit" name="cancel" value="Cancel">
 </form>
