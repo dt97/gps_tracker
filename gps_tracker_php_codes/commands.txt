@@ -35,3 +35,4 @@ CREATE TABLE u2_account (
 ) ENGINE = InnoDB;
 INSERT into u1_account values(CURRENT_TIMESTAMP, "https://www.google.com/maps?q=20 19.374228,085 49.381488");
 https://www.google.com/maps?q=20 20.137752,085 47.983272
+ALTER TABLE users ADD u_email VARCHAR(255) NOT NULL;

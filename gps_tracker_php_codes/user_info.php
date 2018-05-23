@@ -54,6 +54,7 @@ if(isset($_SESSION['id'])) {
 				<th>&nbsp;User ID&nbsp;</th>
 				<th>&nbsp;User Name&nbsp;</th>
 				<th>&nbsp;User Password&nbsp;</th>
+				<th>&nbsp;User Email&nbsp;</th>
 				<th>&nbsp;Actions &nbsp;</th>
 				</tr></thead>");
 		foreach ($output as $output) {
@@ -62,6 +63,7 @@ if(isset($_SESSION['id'])) {
 			echo ('<td><center><a href="gps_info.php?u_id='.$output['u_id'].'">'.htmlentities($output['u_name'])."</a></td>");//to link u_name with gps_info page
 			//echo ("<td><center>".htmlentities($output['u_name'])."</td>");
 			echo ("<td><center>".htmlentities($output['u_pw'])."</td>");
+			echo ("<td><center>".htmlentities($output['u_email'])."</td>");
 			echo ('<td><center><a href="edit_user.php?u_id='.$output['u_id'].'">&nbsp;Edit&nbsp;</a> / <a href="delete_user.php?u_id='.$output['u_id'].'">&nbsp;Delete&nbsp;</a></td>');
 		}
 		echo("</tr></table></center>");
