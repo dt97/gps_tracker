@@ -92,6 +92,8 @@ if ( isset($_SESSION['failure']) ) {
 <input type="password" name="pw" id="pass"><br/>
 <br>
 <input type="submit" value="Log In">
+<!--&nbsp  &nbsp-->
+<a href="forgot_password.php">Forgot Password?</a>
 </form>
 </div>
 </body>
