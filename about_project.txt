@@ -1,0 +1,1 @@
+This project is based on gps tracking and designing cost effective gps tracker.
