@@ -65,7 +65,7 @@ else if(isset($_SESSION['success']))
 	echo('<p style="color: blue;">'.htmlentities($_SESSION['success'])."</p>\n");
 	//echo  $_SESSION['check'];
 	//echo $_SESSION['type'];
-    unset($_SESSION['failure']);	
+    unset($_SESSION['success']);	
 }
 ?> 
 <h4>Reset password</h4>

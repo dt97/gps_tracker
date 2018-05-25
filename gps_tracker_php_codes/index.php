@@ -84,6 +84,13 @@ if ( isset($_SESSION['failure']) ) {
 	//echo $_SESSION['type'];
     unset($_SESSION['failure']);
 }
+else if(isset($_SESSION['success']))
+{
+	echo('<p style="color: blue;">'.htmlentities($_SESSION['success'])."</p>\n");
+	//echo  $_SESSION['check'];
+	//echo $_SESSION['type'];
+    unset($_SESSION['success']);	
+}
 ?>
 <form method="POST" action="index.php">
 <label for="user_id">User ID</label>
