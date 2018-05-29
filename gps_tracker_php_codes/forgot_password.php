@@ -71,7 +71,7 @@ else if(isset($_SESSION['success']))
 <h4>Reset password</h4>
 <form method="post">
 <p>Your user id<input type="text" name="id" size="15" value=""/></p>
-<input type="submit" value="Save">
+<input type="submit" value="Submit">
 </form>
 </div>
 </body>

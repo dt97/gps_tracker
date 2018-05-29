@@ -1,16 +1,17 @@
 <?php
 require_once "pdo_skp.php";
 session_start();
-$salt = 'XyZzy12*_';
-$message = 'http://192.168.87.1/skaipal/reset_password.php?id='.$_GET['id'].'&email='.$_GET['email'];
+//$salt = 'XyZzy12*_';
+//get a mail yourself about successful redirection of password reset link
+$message = 'http://skaipal.in/gps_tracker/reset_password.php?id='.$_GET['id'];
+$email_send = $_GET['email'];
 $email_from = 'skaipal.in';//<== update the email address
 $email_subject = "Password reset link for gps tracker website";
-$email_body = "You have received a new message regarding password reset link from $_GET['email'] .\n
-	Here is the password reset url:\n $message \n";
-    
+$email_body = "You have received a new message regarding password reset link from $email_send \n".
+	"Here is the password reset url:\n $message \n";
 $to = "dt.kanha@gmail.com";//<== update the email address
 $headers = "From: $email_from \r\n";
-$headers .= "Reply-To: $_GET['email'] \r\n";
+$headers .= "Reply-To: $email_send \r\n";
 //Send the email!
 mail($to,$email_subject,$email_body,$headers);
 $email_from = $to;//<== update the email address
@@ -21,7 +22,15 @@ Regards, \n
 Skaipal Consulting Private Ltd. \n";
 $headers = "From: $email_from \r\n" ;
 $headers .="Reply-To: $to \r\n" ;
-mail($_GET['email'],$email_sub,$email_body,$headers);
+if(mail($email_send,$email_sub,$email_body,$headers))
+{
+	$_SESSION['id'] = $_GET['id'];
+	$_SESSION['mail'] = true;
+}
+else
+{
+	unset($_SESSION['mail']);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +52,7 @@ else if(isset($_SESSION['success']))
 	echo('<p style="color: blue;">'.htmlentities($_SESSION['success'])."</p>\n");
 	//echo  $_SESSION['check'];
 	//echo $_SESSION['type'];
-    unset($_SESSION['failure']);	
+    unset($_SESSION['success']);	
 }
 ?>
 </div>

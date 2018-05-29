@@ -3,67 +3,75 @@ require_once "pdo_skp.php";
 session_start();
 $salt = 'XyZzy12*_';
 
-if(isset($_POST['n_pw']) && isset($_POST['r_pw']))
+if(!isset($_SESSION['id']) && !isset($_SESSION['mail']))
 {
-	if(strlen($_POST['n_pw'])<1 || strlen($_POST['r_pw'])<1)
+	die('ACCESS DENIED');
+}
+else if(isset($_SESSION['id']) || isset($_SESSION['mail']))
+{
+	unset($_SESSION['id']);
+	if(isset($_POST['n_pw']) && isset($_POST['r_pw']))
 	{
-		$_SESSION['failure']='All fields are required';
-		header('Location: reset_password.php?id='.$_REQUEST['id']);
-		return;
-	}
-	else
-	{
-		$hashed_npw = hash('md5', $salt.$_POST['n_pw']);//hashing the new password
-		$hashed_rpw = hash('md5', $salt.$_POST['r_pw']);//hashing the retyped password
-		if($hashed_rpw===$hashed_npw)
+		if(strlen($_POST['n_pw'])<1 || strlen($_POST['r_pw'])<1)
 		{
-			if($_SESSION['type']===0)//if its admin
-			{
-				$stmt = $pdo->prepare("UPDATE admin SET a_pw = :pw where a_id = :id");
-				$row = $stmt->execute(array(':pw' => $hashed_npw, ':id' => $_REQUEST['id']));
-				if($row)
-				{
-					$_SESSION['success']='Successfully updated your password. Login now';
-					header('Location: index.php');
-					return;
-				}
-				else
-				{
-					$_SESSION['failure']='Unable to update your password due to invalid credentials. Try again';
-					header('Location: forgot_password.php');
-					return;	
-				}
-			}
-			else if($_SESSION['type']===1)
-			{
-				$stmt = $pdo->prepare("UPDATE users SET u_pw = :pw where u_id = :id");
-				$row = $stmt->execute(array(':pw' => $hashed_npw, ':id' => $_REQUEST['id']));
-				if($row)
-				{
-					$_SESSION['success']='Successfully updated your password. Login now';
-					header('Location: index.php');
-					return;
-				}
-				else
-				{
-					$_SESSION['failure']='Unable to update your password due to invalid credentials. Try again';
-					header('Location: forgot_password.php');
-					return;	
-				}
-			}
-			else
-			{
-				$_SESSION['failure']='Server error. Try again.';
-				header('Location: forgot_password.php');
-				return;
-			}
-		}
-		else
-		{
-			$_SESSION['failure']='Retyped password does not match new password. Try again';
+			$_SESSION['failure']='All fields are required';
 			header('Location: reset_password.php?id='.$_REQUEST['id']);
 			return;
 		}
+		else
+		{
+			$hashed_npw = hash('md5', $salt.$_POST['n_pw']);//hashing the new password
+			$hashed_rpw = hash('md5', $salt.$_POST['r_pw']);//hashing the retyped password
+			if($hashed_rpw===$hashed_npw)
+			{
+				if($_SESSION['type']===0)//if its admin
+				{
+					$stmt = $pdo->prepare("UPDATE admin SET a_pw = :pw where a_id = :id");
+					$row = $stmt->execute(array(':pw' => $hashed_npw, ':id' => $_REQUEST['id']));
+					if($row)
+					{
+						$_SESSION['success']='Successfully updated your password. Login now';
+						header('Location: index.php');
+						return;
+					}
+					else
+					{
+						$_SESSION['failure']='Unable to update your password due to invalid credentials. Try again';
+						header('Location: forgot_password.php');
+						return;	
+					}
+				}
+				else if($_SESSION['type']===1)
+				{
+					$stmt = $pdo->prepare("UPDATE users SET u_pw = :pw where u_id = :id");
+					$row = $stmt->execute(array(':pw' => $hashed_npw, ':id' => $_REQUEST['id']));
+					if($row)
+					{
+						$_SESSION['success']='Successfully updated your password. Login now';
+						header('Location: index.php');
+						return;
+					}
+					else
+					{
+						$_SESSION['failure']='Unable to update your password due to invalid credentials. Try again';
+						header('Location: forgot_password.php');
+						return;	
+					}
+				}
+				else
+				{
+					$_SESSION['failure']='Server error. Try again.';
+					header('Location: forgot_password.php');
+					return;
+				}
+			}	
+			else
+			{
+				$_SESSION['failure']='Retyped password does not match new password. Try again';
+				header('Location: reset_password.php?id='.$_REQUEST['id']);
+				return;
+			}
+		}	
 	}
 }
 ?>
