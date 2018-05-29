@@ -3,11 +3,12 @@ require_once "pdo_skp.php";
 session_start();
 $salt = 'XyZzy12*_';
 
-if(!isset($_SESSION['id']) && !isset($_SESSION['mail']))
+if(!isset($_SESSION['id']) || !isset($_SESSION['mail']))
 {
+	session_destroy();
 	die('ACCESS DENIED');
 }
-else if(isset($_SESSION['id']) || isset($_SESSION['mail']))
+else if(isset($_SESSION['id']) && isset($_SESSION['mail']))
 {
 	unset($_SESSION['id']);
 	if(isset($_POST['n_pw']) && isset($_POST['r_pw']))
