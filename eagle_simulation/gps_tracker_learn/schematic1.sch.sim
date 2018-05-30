@@ -1,0 +1,109 @@
+
+Circuit: * spicenetlist
+
+Doing analysis at TEMP = 0.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+	Node                                  Voltage
+	----                                  -------
+	----	-------
+	n_1                             -1.59370e-031
+
+	Source	Current
+	------	-------
+
+
+ Diode models (Junction Diode model)
+      model                  dmod
+
+      level                     1
+         is                1e-014
+        jsw                     0
+         rs                     0
+        trs                     0
+       trs2                     0
+          n                     1
+         ns                     1
+         tt                     0
+       ttt1                     0
+       ttt2                     0
+        cjo                     0
+         vj                     1
+          m                   0.5
+        tm1                     0
+        tm2                     0
+        cjp                     0
+        php                     1
+       mjsw                  0.33
+        ikf                     0
+        ikr                     0
+        nbv                     1
+       area                     1
+         pj                     0
+       tlev                     0
+      tlevc                     0
+         eg                  1.11
+        xti                     3
+        cta                     0
+        ctp                     0
+        ctp                     0
+        tpb                     0
+       tphp                     0
+       jtun                     0
+     jtunsw                     0
+       ntun                    30
+     xtitun                     3
+        keg                     1
+         kf                     0
+         af                     1
+         fc                   0.5
+        fcs                   0.5
+         bv                     0
+        ibv                 0.001
+        tcv                     0
+     fv_max                1e+099
+     bv_max                1e+099
+
+ Resistor models (Simple linear resistor)
+      model                     R
+
+        rsh                     0
+     narrow                     0
+      short                     0
+        tc1                     0
+        tc2                     0
+       defw                1e-005
+          l                1e-005
+         kf                     0
+         af                     0
+          r                     0
+     bv_max                1e+099
+
+ Diode: Junction Diode model
+     device                d_led1
+      model                  dmod
+         vd          -1.5937e-031
+         id          -1.5937e-043
+         gd           1.0046e-012
+         cd                     0
+
+ Resistor: Simple linear resistor
+     device                  r_r1
+      model                     R
+ resistance                   220
+         ac                   220
+      dtemp                     0
+     bv_max                1e+099
+      noisy                     1
+          i         -7.24407e-034
+          p          1.15448e-064
+
+
+Total elapsed time: 0.038 seconds.
+
+Total DRAM available = 8083.828125 MB.
+DRAM currently available = 4073.785156 MB.
+Total ngspice program size = 5.113281 MB.
+
+

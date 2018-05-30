@@ -1,0 +1,44 @@
+* SpiceNetList
+* 
+* Exported from schematic1.sch at 29-05-2018 19:57
+* 
+* EAGLE Version 9.0.1 Copyright (c) 1988-2018 Autodesk, Inc.
+* 
+.TEMP=25.0
+
+* --------- .OPTIONS ---------
+.OPTIONS ABSTOL=1e-12 GMIN=1e-12 PIVREL=1e-3 ITL1=100 ITL2=50 PIVTOL=1e-13 RELTOL=1e-3 VNTOL=1e-6 CHGTOL=1e-15 ITL4=10 METHOD=TRAP SRCSTEPS=0 TRTOL=7 NODE
+
+* --------- .PARAMS ---------
+
+* --------- devices ---------
+R_R1 N_1 0 220 
+D_LED1 N_1 0 DMOD 
+
+* --------- models ---------
+
+* model file: C:/Users/USER PC/Documents/eagle/gps_tracker_learn/DMOD.mdl
+**********************
+* Autodesk EAGLE - Spice Model File
+* Date: 9/17/17
+* basic diode intrinsic model
+**********************
+.MODEL DMOD D
+
+
+* --------- simulation ---------
+.OP
+
+
+
+.END
+
+
+
+
+
+
+
+
+
+
