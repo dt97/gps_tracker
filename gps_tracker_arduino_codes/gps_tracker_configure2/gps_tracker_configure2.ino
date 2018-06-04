@@ -49,6 +49,8 @@ String get_gps()
       gpss += String(c);//continue reading till end of line
     }
   }
+  else
+    gpss = "no connection";
   return gpss;
 }
 String get_time_utc()
