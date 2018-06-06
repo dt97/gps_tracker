@@ -103,7 +103,11 @@ if(isset($_SESSION['id']))://if id is of user or admin
 		<?php foreach ( $output as $output ):?>
 		<tr data-row-id="<?= $output['u_tstamp']?>">
 		<td><?php echo(htmlentities($output['u_tstamp']));?></td>
-		<td><center><?php echo(htmlentities($output['u_loc']));?></td>
+		<!--<td><center><?php //echo(htmlentities($output['u_loc']));?></td>-->
+		<?php
+		$loc = htmlentities($output['u_loc']);
+		echo ("<td><center><a href='$loc'>$loc</a></td>");
+		?>
 		<?php
 		if($_SESSION['type']===0)//if its admin
 		{
