@@ -36,6 +36,8 @@ CREATE TABLE u2_account (
 INSERT into u1_account values(CURRENT_TIMESTAMP, "https://www.google.com/maps?q=20 19.374228,085 49.381488");
 INSERT into u1_account values(CURRENT_TIMESTAMP, "https://www.google.com/maps?q=20 20.137752,085 47.983272");
 //https://www.google.com/maps?q=20 20.137752,085 47.983272
+//For testing send_gps_info page
+http://192.168.87.1/skaipal/send_gps_info.php?u_id=u1&latitude=14.5&longitude=61.2
 ALTER TABLE users ADD u_email VARCHAR(255) NOT NULL;
 Users
 u_id: u1
@@ -62,3 +64,6 @@ ALTER TABLE users ADD u_pw_reset_link VARCHAR(255);
 ALTER TABLE admin ADD a_pw_reset_link VARCHAR(255);
 ALTER TABLE admin DROP a_pw_reset_link;
 ALTER TABLE users DROP u_pw_reset_link;
+//to test send_gps_info php page url 
+http://192.168.87.1/skaipal/send_gps_info.php?u_id=u1&latitude=14.5&longitude=61.2 for localhost
+http://skaipal.in/send_gps_info.php?u_id=u1&latitude=14.5&longitude=61.2 for skaipal go daddy server
