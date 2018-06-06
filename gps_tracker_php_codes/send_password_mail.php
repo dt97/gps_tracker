@@ -3,6 +3,7 @@ require_once "pdo_skp.php";
 session_start();
 //$salt = 'XyZzy12*_';
 //get a mail yourself about successful redirection of password reset link
+$_SESSION['id'] = $_GET['id'];
 $message = 'http://skaipal.in/gps_tracker/reset_password.php?id='.$_GET['id'];
 $email_send = $_GET['email'];
 $email_from = 'skaipal.in';//<== update the email address
@@ -25,12 +26,12 @@ $headers .="Reply-To: $to \r\n" ;
 if(mail($email_send,$email_sub,$email_body,$headers))
 {
 	$_SESSION['id'] = $_GET['id'];
-	$_SESSION['mail'] = true;
+	//$_SESSION['mail'] = true;
 }
-else
+/*else
 {
 	unset($_SESSION['mail']);
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html>
