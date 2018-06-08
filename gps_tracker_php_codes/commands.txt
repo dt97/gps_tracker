@@ -67,3 +67,6 @@ ALTER TABLE users DROP u_pw_reset_link;
 //to test send_gps_info php page url 
 http://192.168.87.1/skaipal/send_gps_info.php?u_id=u1&latitude=14.5&longitude=61.2 for localhost
 http://skaipal.in/send_gps_info.php?u_id=u1&latitude=14.5&longitude=61.2 for skaipal go daddy server
+//For testing current_gps_info page
+INSERT INTO u2_account (u_tstamp, u_loc) VALUES (CURRENT_TIMESTAMP, "https://www.google.com/maps?q=20 19.374228,085 49.381488");
+INSERT INTO u3_account (u_tstamp, u_loc) VALUES (CURRENT_TIMESTAMP, "https://www.google.com/maps?q=20 19.374228,085 49.381488");
