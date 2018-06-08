@@ -7,7 +7,7 @@ if ( ! isset($_SESSION['id'])) {
 //$_SESSION['failure'] = "You are not an admin. Can't change your gps info";
 $_SESSION['user']=$_GET['u_id'];
 // If the user requested logout go back to main.php
-if ( isset($_POST['cancel']) ) {
+if (isset($_POST['cancel'])) {
 	unset($_SESSION['user']);
 	if($_SESSION['type']===0)//if admin
 	{
@@ -19,7 +19,12 @@ if ( isset($_POST['cancel']) ) {
 	}
     return;
 }
-else if(isset($_POST['save']))
+if(isset($_POST['current_gps_info']))
+{
+	header('Location: current_gps_info.php?u_id='.$_REQUEST['u_id']);//to get current gps location
+	return;
+}
+if(isset($_POST['save']))
 {
 	header('Location: gps_info.php?u_id='.$_REQUEST['u_id']);//to redirect to gps_info.php after admin edits the location details for the user
 	return;
@@ -132,6 +137,7 @@ if($_SESSION['type']===0)
 	echo('<input type="submit" value="Show records available" name="save">');
 }
 ?>
+<input type="submit" value="Current gps location" name="current_gps_info">
 <input type="submit" value="Go back to your account" name="cancel">
 </form>
 </div>
