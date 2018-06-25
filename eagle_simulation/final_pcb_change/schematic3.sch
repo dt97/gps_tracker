@@ -9455,6 +9455,19 @@ ultra fast-recovery rectifier</description>
 <sheets>
 <sheet>
 <plain>
+<text x="-12.7" y="91.44" size="3.81" layer="91">i.</text>
+<text x="-5.08" y="53.34" size="3.81" layer="91">ii.</text>
+<text x="-7.62" y="-5.08" size="3.81" layer="91">iii.</text>
+<text x="68.58" y="78.74" size="3.81" layer="91">iv</text>
+<text x="68.58" y="68.58" size="3.81" layer="91">v</text>
+<text x="81.28" y="38.1" size="3.81" layer="91">vi</text>
+<text x="114.3" y="38.1" size="3.81" layer="91">vii</text>
+<text x="142.24" y="22.86" size="3.81" layer="91">viii</text>
+<text x="162.56" y="53.34" size="3.81" layer="91">ix</text>
+<text x="149.86" y="66.04" size="3.81" layer="91">x</text>
+<text x="147.32" y="88.9" size="3.81" layer="91">xi</text>
+<text x="91.44" y="86.36" size="3.81" layer="91">xii</text>
+<text x="-17.78" y="35.56" size="3.81" layer="91">xiii</text>
 </plain>
 <instances>
 <instance part="D1" gate="1" x="76.2" y="68.58" rot="R270"/>

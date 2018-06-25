@@ -9455,6 +9455,19 @@ ultra fast-recovery rectifier</description>
 <sheets>
 <sheet>
 <plain>
+<text x="-12.7" y="91.44" size="1.778" layer="91">i.</text>
+<text x="-5.08" y="53.34" size="1.778" layer="91">ii.</text>
+<text x="-7.62" y="-5.08" size="1.778" layer="91">iii.</text>
+<text x="68.58" y="78.74" size="1.778" layer="91">iv</text>
+<text x="68.58" y="68.58" size="1.778" layer="91">v</text>
+<text x="83.82" y="50.8" size="1.778" layer="91">vi</text>
+<text x="114.3" y="50.8" size="1.778" layer="91">vii</text>
+<text x="144.78" y="22.86" size="1.778" layer="91">viii</text>
+<text x="149.86" y="58.42" size="1.778" layer="91">ix</text>
+<text x="139.7" y="66.04" size="1.778" layer="91">x</text>
+<text x="147.32" y="88.9" size="1.778" layer="91">xi</text>
+<text x="93.98" y="88.9" size="1.778" layer="91">xii</text>
+<text x="-22.86" y="43.18" size="1.778" layer="91">xiii</text>
 </plain>
 <instances>
 <instance part="D1" gate="1" x="76.2" y="68.58" rot="R270"/>
@@ -9609,10 +9622,10 @@ ultra fast-recovery rectifier</description>
 <wire x1="17.78" y1="33.02" x2="17.78" y2="43.18" width="0.1524" layer="91"/>
 <pinref part="U$2" gate="G$1" pin="VCC"/>
 <junction x="17.78" y="33.02"/>
-<wire x1="17.78" y1="43.18" x2="25.4" y2="43.18" width="0.1524" layer="91"/>
-<pinref part="U$1" gate="G$1" pin="3V3@1"/>
-<wire x1="25.4" y1="43.18" x2="25.4" y2="48.26" width="0.1524" layer="91"/>
-<junction x="25.4" y="48.26"/>
+<pinref part="U$1" gate="G$1" pin="3V3@2"/>
+<wire x1="2.54" y1="48.26" x2="2.54" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="43.18" x2="17.78" y2="43.18" width="0.1524" layer="91"/>
+<junction x="2.54" y="48.26"/>
 </segment>
 </net>
 </nets>
