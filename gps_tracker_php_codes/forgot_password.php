@@ -2,9 +2,14 @@
 require_once "pdo_skp.php";
 session_start();
 $salt = 'XyZzy12*_';
-if(isset($_POST['id']))
+if (isset($_POST['cancel'])) 
 {
-	if(strlen($_POST['id'])<1)
+    header('Location: index.php');
+    return;
+}
+if(isset($_POST['id']) && isset($_POST['email']))
+{
+	if(strlen($_POST['id'])<1 || strlen($_POST['email'])<1)
 	{
 		$_SESSION['failure']='All fields are required';
 		header('Location: forgot_password.php');
@@ -30,16 +35,32 @@ if(isset($_POST['id']))
 			{
 				$_SESSION['type'] = 1;//for user
 				$email = $row['u_email'];
-				$_SESSION['success'] = "The password reset link has been sent to your registered email. Kindly check the verification link to reset your password.";
-				header('Location: send_password_mail.php?id='.$_POST['id'].'&email='.$email);
+				if($_POST['email']===$email)
+				{
+					$_SESSION['success'] = "The password reset link has been sent to your registered email. Kindly check the verification link to reset your password.";
+					header('Location: send_password_mail.php?id='.$_POST['id'].'&email='.$email);
+				}
+				else
+				{
+					$_SESSION['failure'] = "The email you entered didn't match with your registered email. Kindly, re-enter your email registered with our company. For any queries or issues visit our forum or contact us.";
+					header('Location: forgot_password.php');
+				}
 			}
 		}
 		else
 		{
 			$_SESSION['type'] = 0;//for admin
 			$email = $row['a_email'];
-			$_SESSION['success'] = "The password reset link has been sent to your registered email. Kindly check the verification link to reset your password.";
-						header('Location: send_password_mail.php?id='.$_POST['id'].'&email='.$email);
+			if($_POST['email']===$email)
+			{
+				$_SESSION['success'] = "The password reset link has been sent to your registered email. Kindly check the verification link to reset your password.";
+				header('Location: send_password_mail.php?id='.$_POST['id'].'&email='.$email);
+			}
+			else
+			{
+				$_SESSION['failure'] = "The email you entered didn't match with your registered email. Kindly, re-enter your email registered with our company. For any queries or issues visit our forum or contact us.";
+				header('Location: forgot_password.php');
+			}
 		}
 		return;
 	}
@@ -71,7 +92,9 @@ else if(isset($_SESSION['success']))
 <h4>Reset password</h4>
 <form method="post">
 <p>Your user id<input type="text" name="id" size="15" value=""/></p>
-<input type="submit" value="Submit">
+<p>Your email id<input type="email" name="email" size="50" value=""/></p>
+<input type="submit" name='submit' value="Submit">
+<input type="submit" name="cancel" value="Go back to login">
 </form>
 </div>
 </body>
