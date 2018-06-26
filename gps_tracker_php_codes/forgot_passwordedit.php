@@ -2,10 +2,41 @@
 require_once "pdo_skp.php";
 session_start();
 $salt = 'XyZzy12*_';
+static $hid = "";
+static $hemail = "";
 if (isset($_POST['cancel'])) 
 {
     header('Location: index.php');
     return;
+}
+function send_mail($hid)
+{
+	$_SESSION['id'] = $_POST['id'];
+	//$hid = hash('md5', $salt.$_POST['id']);
+	$message = 'http://skaipal.in/gps_tracker/reset_password.php?id='.$hid;
+	$email_send = $_POST['email'];
+	$email_from = 'info@skaipal.in';//<== update the email address
+	$email_subject = "Password reset link for gps tracker website";
+	$email_body = "You have received a new message regarding password reset link from $email_send \n".
+		"Here is the password reset url:\n $message \n";
+	$to = "sarojnayak@skaipal.in";//<== update the email address
+	$headers = "From: $email_from \r\n";
+	$headers .= "Reply-To: $email_send \r\n";
+	//Send the email!	
+	mail($to,$email_subject,$email_body,$headers);
+	$email_from = $to;//<== update the email address
+	$email_sub = "Received your password reset request for accessing gps tracker website!";
+	$email_body = "We have received your password reset request for accessing gps tracker website. \n \n".
+		"Here is the password reset url:\n $message \n;
+	Regards, \n
+	Skaipal Consulting Private Ltd. \n";
+	$headers = "From: $email_from \r\n" ;
+	$headers .="Reply-To: $to \r\n" ;
+	if(mail($email_send,$email_sub,$email_body,$headers))
+	{
+		$_SESSION['id'] = $_GET['id'];
+		//$_SESSION['mail'] = true;
+	}
 }
 if(isset($_POST['id']) && isset($_POST['email']))
 {
@@ -37,10 +68,13 @@ if(isset($_POST['id']) && isset($_POST['email']))
 				$email = $row['u_email'];
 				if($_POST['email']===$email)
 				{
-					$_SESSION['success'] = "The password reset link has been sent to your registered email. Kindly check the verification link to reset your password.";
-					$huid = hash('md5', $salt.$_POST['id']);//generating hash using md5 algorithm
+					$hid = hash('md5', $salt.$_POST['id']);//generating hash using md5 algorithm
 					$hemail = hash('md5', $salt.$_POST['email']);
-					header('Location: send_password_mail.php?id='.$huid.'&email='.$hemail);
+					send_mail($hid);
+					//$_SESSION['success'] = "Your id is ".$hid."The password reset link has been sent to your registered email. Kindly check the verification link to reset your password.";
+$_SESSION['success'] = "The password reset link has been sent to your registered email. Kindly check the verification link to reset your password.";
+					header('Location: forgot_password.php');
+					//header('Location: send_password_mail.php?id='.$huid.'&email='.$hemail);
 				}
 				else
 				{
@@ -55,10 +89,15 @@ if(isset($_POST['id']) && isset($_POST['email']))
 			$email = $row['a_email'];
 			if($_POST['email']===$email)
 			{
-				$_SESSION['success'] = "The password reset link has been sent to your registered email. Kindly check the verification link to reset your password.";
-				$haid = hash('md5', $salt.$_POST['id']);//generating hash using md5 algorithm
+
+				$hid = hash('md5', $salt.$_POST['id']);//generating hash using md5 algorithm
 				$hemail = hash('md5', $salt.$_POST['email']);
-				header('Location: send_password_mail.php?id='.$haid.'&email='.$hemail);
+				send_mail($hid);
+//$_SESSION['success'] = "Your id is ".$hid."The password reset link has been sent to your registered email. Kindly check the verification link to reset your password.";
+$_SESSION['success'] = "The password reset link has been sent to your registered email. Kindly check the verification link to reset your password.";
+					header('Location: forgot_password.php');
+				header('Location: forgot_password.php');
+				//header('Location: send_password_mail.php?id='.$haid.'&email='.$hemail);
 			}
 			else
 			{

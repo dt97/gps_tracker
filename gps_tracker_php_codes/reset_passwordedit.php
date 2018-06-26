@@ -26,14 +26,14 @@ else if(isset($_REQUEST['id']))
 		}
 		else
 		{
-			
-			if($_POST['n_pw']===$_POST['r_pw'])
+			$hashed_npw = hash('md5', $salt.$_POST['n_pw']);//hashing the new password
+			$hashed_rpw = hash('md5', $salt.$_POST['r_pw']);//hashing the retyped password
+			if($hashed_rpw===$hashed_npw)
 			{
-$hashed_npw = hash('md5', $salt.$_POST['n_pw']);//hashing the new password
 				if($_SESSION['type']===0)//if its admin
 				{
 					$haid = hash('md5', $salt.$_POST['id']);//hashed admin id
-					if($haid===$_GET['id'])
+					if($haid===$_REQUEST['id'])
 					{
 						$stmt = $pdo->prepare("UPDATE admin SET a_pw = :pw where a_id = :id");
 						$row = $stmt->execute(array(':pw' => $hashed_npw, ':id' => $_POST['id']));
@@ -52,17 +52,15 @@ $hashed_npw = hash('md5', $salt.$_POST['n_pw']);//hashing the new password
 					}
 					else
 					{
-						$_SESSION['failure']='Unable to update your password due to mismatch of admin id with the expected admin id. Kindly recheck your admin id and try again';
-//echo "uid=$_REQUEST['id']<br>";
-header('Location: reset_password.php?id='.$_GET['id']);
-						//header('Location: forgot_password.php');
+						$_SESSION['failure']='Unable to update your password due to mismatch of user id with the expected user id. Kindly recheck your user id and try again';
+						header('Location: forgot_password.php');
 						return;	
 					}
 				}
 				else if($_SESSION['type']===1)
 				{
 					$huid = hash('md5', $salt.$_POST['id']);//hashed user id
-					if($huid===$_GET['id'])
+					if($huid===$_REQUEST['id'])
 					{
 						$stmt = $pdo->prepare("UPDATE users SET u_pw = :pw where u_id = :id");
 						$row = $stmt->execute(array(':pw' => $hashed_npw, ':id' => $_POST['id']));
@@ -82,10 +80,8 @@ header('Location: reset_password.php?id='.$_GET['id']);
 					else
 					{
 						$_SESSION['failure']='Unable to update your password due to mismatch of user id with the expected user id. Kindly recheck your user id and try again';
-//echo "uid=$_REQUEST['id']<br>";
-header('Location: reset_password.php?id='.$_GET['id']);
-						//header('Location: forgot_password.php');
-						return;		
+						header('Location: forgot_password.php');
+						return;	
 					}
 				}
 				else
